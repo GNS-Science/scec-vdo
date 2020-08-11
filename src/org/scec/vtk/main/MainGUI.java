@@ -148,17 +148,32 @@ public  class MainGUI extends JFrame implements  ChangeListener, PluginActorsCha
 	private JToolBar toolBar;
 	private JPanel toolBarGUI;
 
-	//default starting cam coordinates
-	static double[] camCord = {7513.266063258975,
-			-4588.568400980608,
-			6246.237592377226,//position
-			4375.8873291015625,
-			-2496.9269409179688,
-			3859.8922119140625,//focalpoint
-			-0.45792813113264974,
-			0.276911132961531,
-			0.8447615350850914};//up
+//	//default starting cam coordinates
+//	static double[] camCord = {7513.266063258975,
+//			-4588.568400980608,
+//			6246.237592377226,//position California
+//			4375.8873291015625,
+//			-2496.9269409179688,
+//			3859.8922119140625,//focalpoint
+//			-0.45792813113264974,
+//			0.276911132961531,
+//			0.8447615350850914};//up
 
+
+	//default starting cam coordinates
+	static double[] camCord = {
+			-1344.0,
+			-8109.0,
+			-6996.0, //position NZ
+			-1500,						//Left/Right
+			-7000,						//In/Out
+			-1500,						//focalpoint UpDown
+			0,
+			0,
+			1};//up
+	
+
+	
 	private vtkActor focalPointActor = new vtkActor();
 	
 	private ArrayList<PluginActorsChangeListener> actorsChangeListeners = new ArrayList<>();
@@ -291,6 +306,11 @@ public  class MainGUI extends JFrame implements  ChangeListener, PluginActorsCha
 				if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 					//TODO: change start cam coordinates to be as per the region assigned by default they are set for California
 					//reset view position to default 
+					
+					System.out.println("CAM.GetPosition[0]: " + cam.GetPosition()[0]);
+					System.out.println("CAM.GetPosition[1]: " + cam.GetPosition()[1]);
+					System.out.println("CAM.GetPosition[2]: " + cam.GetPosition()[2]);
+					
 					if(renderWindow.getRenderer().GetViewProps().IsItemPresent(PoliticalBoundariesGUI.mainFocusReginActor)!=0) {
 					
 						renderWindow.getRenderer().GetActiveCamera().SetPosition(camCord[0],camCord[1],camCord[2]);
